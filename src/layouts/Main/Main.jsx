@@ -12,33 +12,20 @@ const initialFormData = {
     tags: [],
     published: true
 }
+/*
+immagine prova copia e incolla: 
+https://static.vecteezy.com/system/resources/thumbnails/030/362/244/small/a-small-animal-is-sitting-on-a-branch-ai-generated-free-photo.jpg
+*/
 
 function Main() {
 
     //Creo lo stato dei post partendo dai dati iniziali (posts.js)
     const [posts, setPosts] = useState(initialPosts)
-    // const [title, setTitle] = useState("")
+    //Creo lo stato del form partendo dai dati iniziali
     const [formData, setFormData] = useState(initialFormData)
 
-    function submit(event) {
-        event.preventDefault()
 
-        // const newTitle = title.trim()
-        // if (newTitle === "") return
-
-        const newPost = {
-            id: Date.now(),
-            ...formData
-        }
-
-        setPosts([...posts, newPost])
-        setFormData(initialFormData)
-        // setTitle("")
-    }
-
-    // function change(event) {
-    //     setTitle(event.target.value)
-    // }
+    //onChange
     function handleFormData(event) {
         const key = event.target.name
         const value = event.target.value
@@ -47,10 +34,22 @@ function Main() {
             ...formData,
             [key]: value
         }
-
         setFormData(newFormData)
     }
 
+    //onSubmit
+    function submit(event) {
+        event.preventDefault()
+
+        const newPost = {
+            id: Date.now(),
+            ...formData
+        }
+        setPosts([...posts, newPost])
+        setFormData(initialFormData) //resetto il campo form
+    }
+
+    //deleteItem
     function deletePost(id) {
         setPosts(posts.filter(post => post.id !== id))
     }
