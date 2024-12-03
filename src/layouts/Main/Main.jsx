@@ -24,6 +24,20 @@ function Main() {
     const [posts, setPosts] = useState(initialPosts)
 
 
+    //TAGS
+    //Tags senza ripetizioni
+    const filteredTags = []
+    initialPosts.forEach(post => {
+        const postTags = post.tags
+
+        postTags.forEach(tag => {
+            if (!filteredTags.includes(tag)) {
+                filteredTags.push(tag)
+            }
+        })
+    })
+
+
     //FORM
     //Creo lo stato del form partendo dai dati iniziali
     const [formData, setFormData] = useState(initialFormData)
@@ -55,28 +69,15 @@ function Main() {
             tags: formData.tags.split(",").map(tag => tag.trim())
         }
         setPosts([...posts, newPost])
-        setFormData(initialFormData) //resetto il campo form
+        setFormData(initialFormData) //resetto i campi del form
     }
+
 
     //CARD
     //deleteItem
     function deletePost(id) {
         setPosts(posts.filter(post => post.id !== id))
     }
-
-    //TAGS
-    //Tags senza ripetizioni
-    const filteredTags = []
-    initialPosts.forEach(post => {
-        const postTags = post.tags
-
-        postTags.forEach(tag => {
-            if (!filteredTags.includes(tag)) {
-                filteredTags.push(tag)
-            }
-        })
-    })
-
 
     return (
         <main>
