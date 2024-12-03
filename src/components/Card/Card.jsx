@@ -2,7 +2,7 @@ import style from "./Card.module.css"
 import placeholder from "../../assets/placeholder.png"
 import Tags from "../Tags/Tags.jsx"
 
-function Card({ item, deleteItem = () => { } }) {
+function Card({ item = {}, deleteItem = () => { } }) { //post (filtrati)
 
     const { id, title, image, content, tags } = item
 

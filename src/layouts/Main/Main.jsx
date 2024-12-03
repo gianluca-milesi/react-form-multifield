@@ -9,7 +9,7 @@ const initialFormData = {
     title: "",
     image: undefined,
     content: "",
-    tags: [],
+    tags: "",
     published: true
 }
 /*
@@ -43,7 +43,8 @@ function Main() {
 
         const newPost = {
             id: Date.now(),
-            ...formData
+            ...formData,
+            tags: formData.tags.split(",").map(tag => tag.trim())
         }
         setPosts([...posts, newPost])
         setFormData(initialFormData) //resetto il campo form
@@ -80,6 +81,7 @@ function Main() {
                     <h3>Crea un nuovo post</h3>
                     <form onSubmit={submit}>
                         <input name="title" type="text" placeholder="Inserisci il titolo" className={style.input_title} onChange={handleFormData} value={formData.title} />
+                        <input name="tags" type="text" placeholder="Inserisci i tags" className={style.input_title} onChange={handleFormData} value={formData.tags} />
                         <input name="image" type="text" placeholder="Inserisci l'immagine" className={style.input_title} onChange={handleFormData} value={formData.image} />
                         <input name="content" type="text" placeholder="Inserisci la descrizione" className={style.input_title} onChange={handleFormData} value={formData.content} />
                         <input type="submit" className={style.submit} value="Aggiungi" />
