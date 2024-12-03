@@ -4,9 +4,8 @@ function Form({ formData, handleFormData, submit }) {
 
     return (
         <>
-
             <form onSubmit={submit}>
-                <h3 className={style.form_title}>Crea un nuovo post</h3>
+                <h3 className={style.form_title}>Crea un nuovo Post</h3>
                 <div className={style.form_field}>
                     <label htmlFor="title">Titolo</label>
                     <input name="title" type="text" placeholder="Inserisci il titolo" className={style.input_item} onChange={handleFormData} value={formData.title} />

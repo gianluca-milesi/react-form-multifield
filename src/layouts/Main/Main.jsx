@@ -11,7 +11,7 @@ const initialFormData = {
     image: undefined,
     content: "",
     tags: "",
-    published: true
+    published: false
 }
 /*
 immagine prova copia e incolla: 
