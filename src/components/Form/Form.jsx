@@ -10,6 +10,7 @@ function Form({ formData, handleFormData, submit }) {
                 <input name="tags" type="text" placeholder="Inserisci i tags" className={style.input_title} onChange={handleFormData} value={formData.tags} />
                 <input name="image" type="text" placeholder="Inserisci l'immagine" className={style.input_title} onChange={handleFormData} value={formData.image} />
                 <input name="content" type="text" placeholder="Inserisci la descrizione" className={style.input_title} onChange={handleFormData} value={formData.content} />
+                <input name="published" type="checkbox" className={style.input_title} onChange={handleFormData} checked={formData.published} />
                 <input type="submit" className={style.submit} value="Aggiungi" />
             </form>
         </>

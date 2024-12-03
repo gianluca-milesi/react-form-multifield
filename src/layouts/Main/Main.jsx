@@ -22,14 +22,16 @@ function Main() {
 
     //Creo lo stato dei post partendo dai dati iniziali (posts.js)
     const [posts, setPosts] = useState(initialPosts)
+
+
+    //FORM
     //Creo lo stato del form partendo dai dati iniziali
     const [formData, setFormData] = useState(initialFormData)
-
 
     //onChange
     function handleFormData(event) {
         const key = event.target.name
-        const value = event.target.value
+        const value = event.target.type === "checkbox" ? event.target.checked : event.target.value //gestione checkbox e value negli inputs
 
         const newFormData = {
             ...formData,
@@ -56,12 +58,13 @@ function Main() {
         setFormData(initialFormData) //resetto il campo form
     }
 
+    //CARD
     //deleteItem
     function deletePost(id) {
         setPosts(posts.filter(post => post.id !== id))
     }
 
-
+    //TAGS
     //Tags senza ripetizioni
     const filteredTags = []
     initialPosts.forEach(post => {
