@@ -5,32 +5,50 @@ import Card from "../../components/Card/Card.jsx"
 import Tags from "../../components/Tags/Tags.jsx"
 
 
+const initialFormData = {
+    title: "",
+    image: undefined,
+    content: "",
+    tags: [],
+    published: true
+}
+
 function Main() {
 
     //Creo lo stato dei post partendo dai dati iniziali (posts.js)
     const [posts, setPosts] = useState(initialPosts)
-    const [title, setTitle] = useState("")
+    // const [title, setTitle] = useState("")
+    const [formData, setFormData] = useState(initialFormData)
 
     function submit(event) {
         event.preventDefault()
 
-        const newTitle = title.trim()
-        if (newTitle === "") return
+        // const newTitle = title.trim()
+        // if (newTitle === "") return
+
         const newPost = {
             id: Date.now(),
-            title: newTitle,
-            image: undefined,
-            content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit animi unde quasi enim non esse ratione voluptas voluptate, officiis veritatis magni blanditiis possimus nobis cum id inventore corporis deserunt hic.",
-            tags: [],
-            published: true
+            ...formData
         }
 
         setPosts([...posts, newPost])
-        setTitle("")
+        setFormData(initialFormData)
+        // setTitle("")
     }
 
-    function change(event) {
-        setTitle(event.target.value)
+    // function change(event) {
+    //     setTitle(event.target.value)
+    // }
+    function handleFormData(event) {
+        const key = event.target.title
+        const value = event.target.value
+
+        const newFormData = {
+            ...formData,
+            [key]: value
+        }
+
+        setFormData(newFormData)
     }
 
     function deletePost(id) {
@@ -62,7 +80,9 @@ function Main() {
                 <div className="container">
                     <h3>Crea un nuovo post</h3>
                     <form onSubmit={submit}>
-                        <input type="text" placeholder="Inserisci il titolo" className={style.input_title} onChange={change} value={title} />
+                        <input type="text" placeholder="Inserisci il titolo" className={style.input_title} onChange={handleFormData} value={formData.title} />
+                        <input type="text" placeholder="Inserisci l'immagine" className={style.input_title} onChange={handleFormData} value={formData.image} />
+                        <input type="text" placeholder="Inserisci la descrizione" className={style.input_title} onChange={handleFormData} value={formData.content} />
                         <input type="submit" className={style.submit} value="Aggiungi" />
                     </form>
                 </div>
