@@ -40,7 +40,7 @@ function Main() {
     //     setTitle(event.target.value)
     // }
     function handleFormData(event) {
-        const key = event.target.title
+        const key = event.target.name
         const value = event.target.value
 
         const newFormData = {
@@ -80,9 +80,9 @@ function Main() {
                 <div className="container">
                     <h3>Crea un nuovo post</h3>
                     <form onSubmit={submit}>
-                        <input type="text" placeholder="Inserisci il titolo" className={style.input_title} onChange={handleFormData} value={formData.title} />
-                        <input type="text" placeholder="Inserisci l'immagine" className={style.input_title} onChange={handleFormData} value={formData.image} />
-                        <input type="text" placeholder="Inserisci la descrizione" className={style.input_title} onChange={handleFormData} value={formData.content} />
+                        <input name="title" type="text" placeholder="Inserisci il titolo" className={style.input_title} onChange={handleFormData} value={formData.title} />
+                        <input name="image" type="text" placeholder="Inserisci l'immagine" className={style.input_title} onChange={handleFormData} value={formData.image} />
+                        <input name="content" type="text" placeholder="Inserisci la descrizione" className={style.input_title} onChange={handleFormData} value={formData.content} />
                         <input type="submit" className={style.submit} value="Aggiungi" />
                     </form>
                 </div>
