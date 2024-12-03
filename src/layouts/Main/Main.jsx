@@ -1,6 +1,7 @@
 import style from "./Main.module.css"
 import { useState } from "react"
 import initialPosts from "../../data/posts.js"
+import Form from "../../components/Form/Form.jsx"
 import Card from "../../components/Card/Card.jsx"
 import Tags from "../../components/Tags/Tags.jsx"
 
@@ -41,6 +42,11 @@ function Main() {
     function submit(event) {
         event.preventDefault()
 
+        //gestione errore stringa vuota
+        if (formData.title.trim() === '') return alert("Inserisci un titolo")
+        if (formData.tags.trim() === '') return alert("Inserisci i tags")
+        if (formData.content.trim() === '') return alert("Inserisci una descrizione")
+
         const newPost = {
             id: Date.now(),
             ...formData,
@@ -78,14 +84,7 @@ function Main() {
             </section>
             <section className={style.form}>
                 <div className="container">
-                    <h3>Crea un nuovo post</h3>
-                    <form onSubmit={submit}>
-                        <input name="title" type="text" placeholder="Inserisci il titolo" className={style.input_title} onChange={handleFormData} value={formData.title} />
-                        <input name="tags" type="text" placeholder="Inserisci i tags" className={style.input_title} onChange={handleFormData} value={formData.tags} />
-                        <input name="image" type="text" placeholder="Inserisci l'immagine" className={style.input_title} onChange={handleFormData} value={formData.image} />
-                        <input name="content" type="text" placeholder="Inserisci la descrizione" className={style.input_title} onChange={handleFormData} value={formData.content} />
-                        <input type="submit" className={style.submit} value="Aggiungi" />
-                    </form>
+                    <Form formData={formData} handleFormData={handleFormData} submit={submit} />
                 </div>
             </section>
             <section className={style.cards}>
