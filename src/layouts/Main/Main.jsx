@@ -11,6 +11,7 @@ const initialFormData = {
     image: undefined,
     content: "",
     tags: "",
+    category: "",
     published: false
 }
 /*

@@ -22,6 +22,14 @@ function Form({ formData, handleFormData, submit }) {
                     <label htmlFor="tags">Descrizione</label>
                     <input name="content" type="text" placeholder="Inserisci la descrizione" className={style.input_item} onChange={handleFormData} value={formData.content} />
                 </div>
+                <div className={style.form_field}>
+                    <label htmlFor="category">Categoria</label>
+                    <select name="category" onChange={handleFormData} value={formData.category}>
+                        <option value="">Seleziona una categoria</option>
+                        <option value="grande">Grande</option>
+                        <option value="piccolo">Piccolo</option>
+                    </select>
+                </div>
                 <div className={style.form_published_field}>
                     <label htmlFor="tags">Pubblica</label>
                     <input name="published" type="checkbox" className={style.input_item_checkbox} onChange={handleFormData} checked={formData.published} />
